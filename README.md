@@ -1,6 +1,4 @@
-# Tanmeet Singh Sachdeva — Personal Portfolio
-
-https://tanmeetsingh24.github.io/Tanmeet/
+# Portfolio — Tanmeet Singh Sachdeva
 
 Fully responsive personal portfolio website, built with HTML, CSS, and JavaScript.
 
