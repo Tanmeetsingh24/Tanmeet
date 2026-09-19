@@ -54,5 +54,5 @@ Most professional firmware and hardware work is private. Public snapshots:
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/tanmeetss/)
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Tanmeetsingh24/Tanmeetsingh24/main/assets/electronics-animation.gif" alt="Subtle animated PCB traces, LEDs, and oscilloscope waveform" width="860"/>
+  <img src="https://raw.githubusercontent.com/Tanmeetsingh24/Tanmeetsingh24/main/assets/electronics-animation.gif" alt="Animated PCB traces, LEDs, and oscilloscope waveform" width="860"/>
 </p>
