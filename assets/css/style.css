@@ -1333,6 +1333,26 @@ textarea.form-input::-webkit-resizer { display: none; }
 
 .form-btn:disabled:hover::before { background: var(--bg-gradient-jet); }
 
+.form-honey {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.form-status {
+  min-height: 1.25em;
+  margin-bottom: 15px;
+  font-size: var(--fs-6);
+  color: var(--light-gray-70);
+}
+
+.form-status.success { color: var(--orange-yellow-crayola); }
+
+.form-status.error { color: var(--bittersweet-shimmer); }
+
 
 
 

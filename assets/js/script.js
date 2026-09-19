@@ -146,18 +146,64 @@ for (let i = 0; i < filterBtn.length; i++) {
 const form = document.querySelector("[data-form]");
 const formInputs = document.querySelectorAll("[data-form-input]");
 const formBtn = document.querySelector("[data-form-btn]");
+const formBtnLabel = document.querySelector("[data-form-btn-label]");
+const formStatus = document.querySelector("[data-form-status]");
 
-// add event to all form input field
-for (let i = 0; i < formInputs.length; i++) {
-  formInputs[i].addEventListener("input", function () {
+function updateFormSubmitState() {
+  if (!form || !formBtn) return;
+  if (form.checkValidity()) {
+    formBtn.removeAttribute("disabled");
+  } else {
+    formBtn.setAttribute("disabled", "");
+  }
+}
 
-    // check form validation
-    if (form.checkValidity()) {
-      formBtn.removeAttribute("disabled");
-    } else {
-      formBtn.setAttribute("disabled", "");
+function setFormStatus(message, type) {
+  if (!formStatus) return;
+  formStatus.textContent = message;
+  formStatus.classList.remove("success", "error");
+  if (type) formStatus.classList.add(type);
+}
+
+if (form && formBtn) {
+  for (let i = 0; i < formInputs.length; i++) {
+    formInputs[i].addEventListener("input", updateFormSubmitState);
+  }
+
+  form.addEventListener("submit", async function (event) {
+    event.preventDefault();
+    setFormStatus("");
+
+    const originalLabel = formBtnLabel ? formBtnLabel.textContent : "Send Message";
+    formBtn.setAttribute("disabled", "");
+    if (formBtnLabel) formBtnLabel.textContent = "Sending…";
+
+    try {
+      const response = await fetch(form.action, {
+        method: "POST",
+        body: new FormData(form),
+        headers: { Accept: "application/json" },
+      });
+
+      const data = await response.json().catch(function () {
+        return {};
+      });
+
+      if (!response.ok) {
+        throw new Error(data.message || "Unable to send message.");
+      }
+
+      form.reset();
+      if (formBtnLabel) formBtnLabel.textContent = "Message sent";
+      setFormStatus("Thanks — your message was sent. I will get back to you soon.", "success");
+    } catch (error) {
+      if (formBtnLabel) formBtnLabel.textContent = originalLabel;
+      setFormStatus(
+        "Something went wrong. Please try again or email tanmeet.sachdeva@gmail.com directly.",
+        "error"
+      );
+      updateFormSubmitState();
     }
-
   });
 }
 
